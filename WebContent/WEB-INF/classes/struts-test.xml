@@ -22,4 +22,11 @@
 	</action>
 	
 </package>
+
+<package name="tset2" extends="struts-default" namespace="/modelDri" >
+	<action name="write" method="created" class="com.test2.TestAction">
+		<result name="input">/test2/write.jsp</result>
+		<result name="success">/test2/view.jsp</result>
+	</action>     
+</package>
 </struts>
