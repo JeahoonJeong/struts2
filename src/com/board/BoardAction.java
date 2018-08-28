@@ -7,6 +7,8 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
+import com.util.dao.CommonDAO;
+import com.util.dao.CommonDAOImpl;
 
 public class BoardAction extends ActionSupport implements Preparable, ModelDriven<BoardDTO>{
 	
@@ -45,6 +47,18 @@ public class BoardAction extends ActionSupport implements Preparable, ModelDrive
 		}
 		
 		//게시물 저장
+		CommonDAO dao = CommonDAOImpl.getInstance();
+		int maxBoardNum = dao.getIntValue("board.maxBoardNum");
+		
+		dto.setBoardNum(maxBoardNum+1);
+		dto.setIpAddr(request.getRemoteAddr());
+		dto.setGroupNum(dto.getBoardNum());
+		dto.setDepth(0);
+		dto.setOrderNo(0);
+		dto.setParent(0);
+		
+		dao.insertData("board.insertData", dto);
+		
 		return SUCCESS;
 		
 	}
