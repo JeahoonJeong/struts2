@@ -110,7 +110,7 @@
 			<dl>
 				<dt>작성자</dt>
 				<dd>
-				      <input type="text" name="name" value="${dto.name } size="35" maxlength="20" class="boxTF" />
+				      <input type="text" name="name" value="${dto.name }" size="35" maxlength="20" class="boxTF" />
 				</dd>
 			</dl>
 		</div>
@@ -119,7 +119,7 @@
 			<dl>
 				<dt>E-Mail</dt>
 				<dd>
-				      <input type="text" name="email" value="${dto.email } size="35" maxlength="50" class="boxTF" />
+				      <input type="text" name="email" value="${dto.email }" size="35" maxlength="50" class="boxTF" />
 				</dd>
 			</dl>
 		</div>
@@ -137,7 +137,7 @@
 			<dl>
 				<dt>패스워드</dt>
 				<dd>
-				      <input type="password" name="pwd" value="${dto.pwd } size="35" maxlength="7" class="boxTF" />&nbsp;(게시물 수정 및 삭제시 필요 !!!)
+				      <input type="password" name="pwd" value="${dto.pwd }" size="35" maxlength="7" class="boxTF" />&nbsp;(게시물 수정 및 삭제시 필요 !!!)
 				</dd>
 			</dl>
 		</div>

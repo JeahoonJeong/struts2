@@ -45,7 +45,7 @@
 		</div>
 		<div id="rightHeader">
 			<input type="button" value=" 글올리기 " class="btn2" 
-					onclick="javascript:loaction.href='<%=cp %>/board/created.action'"/>
+					onclick="javascript:location.href='<%=cp %>/board/created.action'"/>
 		</div>
 	</div>
 	<div id="bbsList_list">

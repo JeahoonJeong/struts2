@@ -8,7 +8,7 @@ public class BoardDTO {
 	private String pwd;
 	private String email;
 	private String subject;
-	private String contnet;
+	private String content;
 	private String ipAddr;
 	private int groupNum;
 	private int depth;
@@ -53,12 +53,7 @@ public class BoardDTO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public String getContnet() {
-		return contnet;
-	}
-	public void setContnet(String contnet) {
-		this.contnet = contnet;
-	}
+	
 	public String getIpAddr() {
 		return ipAddr;
 	}
@@ -130,6 +125,12 @@ public class BoardDTO {
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	

@@ -21,8 +21,6 @@ public class BoardAction extends ActionSupport implements Preparable, ModelDrive
 		return dto;
 	}
 	
-	
-
 	@Override
 	public BoardDTO getModel() {
 		return dto;
