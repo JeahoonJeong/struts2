@@ -14,12 +14,20 @@
 <link rel="stylesheet" href="<%=cp%>/board/css/style.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/board/css/list.css" type="text/css"/>
 
+<script type="text/javascript">
+	function searchData() {
+		var f = document.serchForm;
+		f.action ="<%=cp %>/board/list.action";
+		f.submit();
+	}
+</script>
+
 </head>
 
 <body>
 <div id="bbsList">
 	<div id="bbsList_title">
-	게 시 판
+	게 시 판(struts2)
 	</div>
 
 	<div id="bbsList_header">
@@ -31,11 +39,13 @@
 				<option value="content">내용</option>
 			</select>
 			<input type="text" name="searchValue" class="textFiled"/>
-			<input type="button" value=" 검 색 " class="btn2" onclick=""/>
+			<input type="button" value=" 검 색 " class="btn2" 
+					onclick="searchData();"/>
 		  </form>
 		</div>
 		<div id="rightHeader">
-			<input type="button" value=" 글올리기 " class="btn2" onclick=""/>
+			<input type="button" value=" 글올리기 " class="btn2" 
+					onclick="javascript:loaction.href='<%=cp %>/board/created.action'"/>
 		</div>
 	</div>
 	<div id="bbsList_list">
