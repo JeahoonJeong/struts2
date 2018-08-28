@@ -1,0 +1,25 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<package name="tset" extends="struts-default" namespace="/itwill" >        
+						<!-- namespace에 공백이 있으면 안된다. -->
+	
+	<action name="write">
+		<result>/test/write.jsp</result>
+	</action>
+	
+	<action name="write_ok" class="com.test.TestAction">
+		<result name="success">/test/view.jsp</result>
+	</action>
+	
+	<action name="created">
+		<result>/test1/create.jsp</result>
+	</action>
+	
+	<action name="created_ok" class="com.test1.TestAction">
+		<result name="ok">/test1/result.jsp</result>
+	</action>
+	
+</package>
+</struts>
