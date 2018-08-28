@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="board">
+
+<typeAlias alias="boardDTO" type="com.board.BoardDTO"/>
+
+<select id="maxBoardNum" resultClass="int">
+	select nvl(max(boardNum),0) from bbs;
+</select>
+
+<insert id="insertData" parameterClass="boardDTO">
+	insert into bbs (boardNum, name, pwd, email, subject, content, ipAddr, groupNum, orderNo, parent, depth, hitCount,
+	created) values(#boardNum#, #name#, #pwd#, #email#, #subject#, #content#, #ipAddr#, #groupNum#, #orderNo#, #parent#,#depth#, 0, sysdate)	
+</insert>
+
+
+</sqlMap>
