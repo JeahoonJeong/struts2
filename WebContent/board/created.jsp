@@ -145,11 +145,11 @@
 
 	<div id="bbsCreated_footer">
 		<input type="hidden" name="boardNum" value="${dto.boardNum }">
-		<input type="hidden" name="pageNum" value="${dto.pageNum }">
+		<input type="hidden" name="pageNum" value="${pageNum }">
 		<input type="hidden" name="groupNum" value="${dto.groupNum }">
 		<input type="hidden" name="orderNo" value="${dto.orderNo }">
 		<input type="hidden" name="depth" value="${dto.depth }">
-		<input type="hidden" name="parent" value="${dto.parent }">
+		<input type="hidden" name="parent" value="${dto.boardNum }">
 		<input type="hidden" name="mode" value="${mode }">
 		
         <input type="button" value=" 등록하기 " class="btn2" 
@@ -157,7 +157,7 @@
         <input type="reset" value=" 다시입력 " class="btn2" 
         		onclick="document.myForm.subject.focus();"/>
         <input type="button" value=" 작성취소 " class="btn2" 
-        		onclick="javascript:location.href='<%=cp %>/board/list.action';"/>
+        		onclick="javascript:location.href='<%=cp %>/board/list.action?pageNum=${pageNum }';"/>
 	</div>
 
     </form>
