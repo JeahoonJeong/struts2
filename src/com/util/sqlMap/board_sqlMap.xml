@@ -30,7 +30,77 @@
 	where $searchKey$ like '%' || #searchValue# || '%'
 	order by groupNum desc, orderNo asc) data)
 	<![CDATA[ where rnum>=#start# and rnum<=#end# ]]>
- 
 </select>
 
+<update id="hitCountUpdate" parameterClass="int">
+	update bbs set hitcount = hitcount+1 where boardNum=#boardNum#
+</update>
+
+<select id="readData" parameterClass="int" resultClass="boardDTO">
+	select boardNum,name,pwd,email,subject,content,ipAddr,groupNum,depth,orderNo,parent,hitCount,created
+	from bbs where boardNum = #boardNum#	
+</select>
+
+<!-- 이전글 다음글 -->
+<select id="preReadData" parameterClass="map" resultClass="boardDTO">
+<![CDATA[	
+	select data.* from(
+	select boardNum,subject from bbs
+	where ($searchKey$ like '%' || #searchValue# || '%')
+	and ((groupNum=#groupNum# and orderNo<#orderNo#)
+	or (groupNum>#groupNum#))
+	order by groupNum asc, orderNo desc) data
+	where rownum = 1
+]]>
+</select>
+
+<select id="nextReadData" parameterClass="map" resultClass="boardDTO">
+<![CDATA[	
+	select data.* from(
+	select boardNum,subject from bbs
+	where (#searchKey# like '%' || #searchValue# || '%')
+	and ((groupNum=#groupNum# and orderNo>#orderNo#)
+	or (groupNum<#groupNum#))
+	order by groupNum desc, orderNo asc) data
+	where rownum = 1
+]]>
+</select>
+
+<!-- 답변일 경우 순서 변경 -->
+
+<update id="orderNoUpdate" parameterClass="map">
+	update bbs set orderNo = orderNo+1
+	where groupNum=#groupNum# and orderNo>#orderNo#
+</update>
+
+<update id="updateData" parameterClass="boardDTO">
+	update bbs set name=#name#,subject=#subject#, email=#email#, content=#content#,
+	pwd=#pwd# where boardNum=#boardNum#
+</update>
+
+<delete id="deleteData" parameterClass="int">
+	delete bbs where boardNum = #boardNum# 
+</delete>
+
 </sqlMap>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
