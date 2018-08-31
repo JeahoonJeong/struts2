@@ -53,18 +53,18 @@ public class BoardAction extends ActionSupport implements Preparable, ModelDrive
 		}
 		
 		//게시물 저장
-		CommonDAO dao = CommonDAOImpl.getInstance();
-		int maxBoardNum = dao.getIntValue("board.maxBoardNum");
-		
-		dto.setBoardNum(maxBoardNum+1);
-		dto.setIpAddr(request.getRemoteAddr());
-		dto.setGroupNum(dto.getBoardNum());
-		dto.setDepth(0);
-		dto.setOrderNo(0);
-		dto.setParent(0);
-		
-		dao.insertData("board.insertData", dto);
-		
+				CommonDAO dao = CommonDAOImpl.getInstance();
+				int maxBoardNum = dao.getIntValue("board.maxBoardNum");
+				
+				dto.setBoardNum(maxBoardNum+1);
+				dto.setIpAddr(request.getRemoteAddr());
+				dto.setGroupNum(dto.getBoardNum());
+				dto.setDepth(0);
+				dto.setOrderNo(0);
+				dto.setParent(0);
+				
+				dao.insertData("board.insertData", dto);
+				
 		return SUCCESS;
 		
 	}
@@ -233,18 +233,90 @@ public class BoardAction extends ActionSupport implements Preparable, ModelDrive
 	
 	public String updated() throws Exception {
 		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		CommonDAO dao = CommonDAOImpl.getInstance();
 		
+		if(dto.getMode()==null || dto.getMode().equals("")){
+			
+			dto = (BoardDTO)dao.getReadData("board.readData",dto.getBoardNum());
+			if(dto==null){
+				return "read-error";
+			}
+			request.setAttribute("mode", "updated");
+			request.setAttribute("pageNum", dto.getPageNum());
+			
+			return INPUT;
+		}
+		
+		dao.updateData("board.updateData", dto);
 		
 		return SUCCESS;
 	}
 	
 	public String reply() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		CommonDAO dao = CommonDAOImpl.getInstance();
+		
+		if(dto.getMode() == null || dto.getMode().equals("")){
+			dto = (BoardDTO)dao.getReadData("board.readData",dto.getBoardNum());
+		
+			if(dto == null){
+				return "read-error";
+			}
+			
+			String temp = "\r\n---------------------------------------------------------\r\n\r";
+			
+			temp += "[답변]\r\n";
+			
+			dto.setSubject("[답변]"+dto.getSubject());
+			dto.setContent(dto.getContent()+ temp);
+			dto.setName("");
+			dto.setEmail("");
+			dto.setPwd("");
+			
+			request.setAttribute("mode", "reply");
+			
+			request.setAttribute("pageNum", dto.getPageNum());
+			
+			return INPUT;
+			
+		}
+		
+		// 답변처리
+		
+		//orderNo 변경
+		
+		Map<String, Object> hMap = new HashMap<String, Object>();
+		
+		hMap.put("groupNum", dto.getGroupNum());
+		hMap.put("orderNo", dto.getOrderNo());
+		
+		dao.updateData("board.orderNoUpdate", hMap);
+		
+				
 		
 		
+		//답변입력 
+		int maxBoardNum = dao.getIntValue("board.maxBoardNum");
 		
+		dto.setBoardNum(maxBoardNum+1);
+		dto.setIpAddr(request.getRemoteAddr());
+		dto.setDepth(dto.getDepth()+1);
+		dto.setOrderNo(dto.getOrderNo()+1);
+		
+		dao.insertData("board.insertData", dto);
+				
 		return SUCCESS;
 	}
-	
+	public String deleted() throws Exception {
+		CommonDAO dao = CommonDAOImpl.getInstance();
+		
+		dao.deleteData("board.deleteData", dto.getBoardNum());
+		
+		return SUCCESS;
+		
+	}
 }
 
 

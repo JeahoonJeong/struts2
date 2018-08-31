@@ -58,7 +58,7 @@
 <![CDATA[	
 	select data.* from(
 	select boardNum,subject from bbs
-	where (#searchKey# like '%' || #searchValue# || '%')
+	where ($searchKey$ like '%' || #searchValue# || '%')
 	and ((groupNum=#groupNum# and orderNo>#orderNo#)
 	or (groupNum<#groupNum#))
 	order by groupNum desc, orderNo asc) data
@@ -79,7 +79,9 @@
 </update>
 
 <delete id="deleteData" parameterClass="int">
-	delete bbs where boardNum = #boardNum# 
+	delete from bbs
+	where boardNum in(select boardNum from bbs start with boardNum=#boardNum#
+	connect by prior boardNum=parent)
 </delete>
 
 </sqlMap>

@@ -27,5 +27,9 @@
 		<result name="success" type="redirectAction">list?pageNum=${dto.pageNum}</result>
 	</action>
 	
+	<action name="deleted" method="deleted" class="com.board.BoardAction">
+		<result name="success" type="redirectAction">list?pageNum=${dto.pageNum}</result>
+	</action>
+	
 </package>
 </struts>

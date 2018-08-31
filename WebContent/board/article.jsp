@@ -17,22 +17,24 @@
 <script type="text/javascript">
 	function sendData(value){
 		
-		var boardNum = "${dto.boardNum}";
+		var boardNum = ${dto.boardNum};
 		var pageNum = "${pageNum}";
-		var url = "<%=cp %>/board/";
 		
-		if(value == 'reply'){
-			url+='reply.action?';
-		}else if(value=='update'){
-			url+='update.action?';
+		var url = "<%=cp%>/board/";
+		
+		if(value=='replay'){
+			url += "reply.action?";
+		}else if(value=='updated'){
+			url += "updated.action?";
 		}else if(value=='deleted'){
-			url+='deleted.action?';
+			url += "deleted.action?";
 		}
 		
 		url += "boardNum=" + boardNum;
-		url += "&${params}";
+		url += "&${parmas}";
 		
 		location.replace(url);
+
 		
 		
 	}
@@ -94,7 +96,7 @@
 			   <input type="button" value=" 답변 " class="btn2" 
 			   			onclick="sendData('reply');"/>
                <input type="button" value=" 수정 " class="btn2" 
-               			onclick="sendData('update');"/>
+               			onclick="sendData('updated');"/>
                <input type="button" value=" 삭제 " class="btn2" 
                			onclick="sendData('deleted');"/>
 		</div>

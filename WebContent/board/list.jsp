@@ -16,7 +16,7 @@
 
 <script type="text/javascript">
 	function searchData() {
-		var f = document.serchForm;
+		var f = document.searchForm;
 		f.action ="<%=cp %>/board/list.action";
 		f.submit();
 	}
@@ -64,6 +64,13 @@
 			<dl>
 				<dd class="num">${dto.listNum }</dd>
 				<dd class="subject">
+					<c:if test="${dto.depth!=0 }">
+						<c:forEach var="n" begin="1" end="${dto.depth }" step="1">
+							&nbsp;
+						</c:forEach>
+						<img alt="" src="<%=cp %>/board/image/re.gif">	
+					</c:if>
+				
 					<a href="${urlArticle }&boardNum=${dto.boardNum}">${dto.subject }</a>	
 				</dd>
 				<dd class="name">${dto.name }</dd>

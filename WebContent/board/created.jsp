@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	request.setCharacterEncoding("utf-8");
 	String cp = request.getContextPath();
@@ -145,12 +145,30 @@
 
 	<div id="bbsCreated_footer">
 		<input type="hidden" name="boardNum" value="${dto.boardNum }">
-		<input type="hidden" name="pageNum" value="${pageNum }">
+		<input type="hidden" name="pageNum" value="${dto.pageNum }">
 		<input type="hidden" name="groupNum" value="${dto.groupNum }">
 		<input type="hidden" name="orderNo" value="${dto.orderNo }">
 		<input type="hidden" name="depth" value="${dto.depth }">
 		<input type="hidden" name="parent" value="${dto.boardNum }">
 		<input type="hidden" name="mode" value="${mode }">
+	
+	<c:if test="${mode=='updated' }">
+		
+        <input type="button" value=" 수정하기 " class="btn2" 
+        		onclick="sendIt();"/>
+        <input type="button" value=" 수정취소 " class="btn2" 
+        		onclick="javascript:location.href='<%=cp %>/board/list.action?pageNum=${pageNum }';"/>
+    </c:if>
+    
+    <c:if test="${mode=='reply' }">
+		
+        <input type="button" value=" 답변등록하기 " class="btn2" 
+        		onclick="sendIt();"/>
+        <input type="button" value=" 답변취소 " class="btn2" 
+        		onclick="javascript:location.href='<%=cp %>/board/list.action?pageNum=${pageNum }';"/>
+    </c:if>
+    
+    <c:if test="${mode=='created' }">
 		
         <input type="button" value=" 등록하기 " class="btn2" 
         		onclick="sendIt();"/>
@@ -158,6 +176,8 @@
         		onclick="document.myForm.subject.focus();"/>
         <input type="button" value=" 작성취소 " class="btn2" 
         		onclick="javascript:location.href='<%=cp %>/board/list.action?pageNum=${pageNum }';"/>
+    </c:if>
+    
 	</div>
 
     </form>

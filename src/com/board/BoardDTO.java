@@ -21,8 +21,6 @@ public class BoardDTO {
 	private String searchValue;
 	private String pageNum;
 	private String mode;
-	
-	
 	public int getListNum() {
 		return listNum;
 	}
@@ -41,6 +39,12 @@ public class BoardDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -53,7 +57,12 @@ public class BoardDTO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public String getIpAddr() {
 		return ipAddr;
 	}
@@ -120,18 +129,8 @@ public class BoardDTO {
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
-	public String getPwd() {
-		return pwd;
-	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
+	
+	
 	
 	
 	

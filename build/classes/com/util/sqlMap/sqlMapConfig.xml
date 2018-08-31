@@ -27,6 +27,7 @@
   
   <sqlMap resource="com/util/sqlMap/temp_sqlMap.xml"/>
   <sqlMap resource="com/util/sqlMap/board_sqlMap.xml"/>
+  <sqlMap resource="com/util/sqlMap/image_sqlMap.xml"/>
   
   <!-- List more here...
   <sqlMap resource="com/mydomain/data/Order.xml"/>
